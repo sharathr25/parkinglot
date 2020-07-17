@@ -38,7 +38,7 @@ public class MainTest {
     void testParkCarWhenSlotAvailable() {
         System.setIn(new ByteArrayInputStream(("" +
                 "create_parking_lot 6" +
-                "\npark KA-01-HH-1234 White"
+                "\npark KA-01-HH-1234 White light"
         ).getBytes()));
         Main.main();
         assertEquals("Allocated slot number: 1", outContent.toString().split("\n")[1]);
@@ -48,7 +48,7 @@ public class MainTest {
     void testParkCarWhenSlotNotAvailable() {
         System.setIn(new ByteArrayInputStream(("" +
                 "create_parking_lot 0" +
-                "\npark KA-01-HH-1234 White"
+                "\npark KA-01-HH-1234 White light"
         ).getBytes()));
         Main.main();
         assertEquals("Sorry, parking lot is full", outContent.toString().split("\n")[1]);
@@ -69,8 +69,8 @@ public class MainTest {
     void testStatusOfParkingLot() {
         System.setIn(new ByteArrayInputStream(("" +
                 "create_parking_lot 2" +
-                "\npark KA-01-HH-1234 White" +
-                "\npark KA-01-HH-1235 Black" +
+                "\npark KA-01-HH-1234 White light" +
+                "\npark KA-01-HH-1235 Black heavy" +
                 "\nstatus"
         ).getBytes()));
         Main.main();
@@ -83,8 +83,8 @@ public class MainTest {
     void testToGetRegistrationNumbersOfCarsUsingColor() {
         System.setIn(new ByteArrayInputStream((
                 "create_parking_lot 2" +
-                "\npark KA-01-HH-1234 White" +
-                "\npark KA-01-HH-1235 White" +
+                "\npark KA-01-HH-1234 White light" +
+                "\npark KA-01-HH-1235 White heavy" +
                 "\nregistration_numbers_for_cars_with_colour White"
         ).getBytes()));
         Main.main();
@@ -95,9 +95,9 @@ public class MainTest {
     void testToGetSlotNumbersOfCarsUsingColor() {
         System.setIn(new ByteArrayInputStream((
                 "create_parking_lot 3" +
-                "\npark KA-01-HH-1234 White" +
-                "\npark KA-01-HH-1235 Black" +
-                "\npark KA-01-HH-1236 White" +
+                "\npark KA-01-HH-1234 White light" +
+                "\npark KA-01-HH-1235 Black light" +
+                "\npark KA-01-HH-1236 White heavy" +
                 "\nslot_numbers_for_cars_with_colour White"
         ).getBytes()));
         Main.main();
@@ -108,7 +108,7 @@ public class MainTest {
     void testToGetSlotNumberOfCarUsingRegistrationNumber() {
         System.setIn(new ByteArrayInputStream((
                 "create_parking_lot 3" +
-                "\npark KA-01-HH-1234 White" +
+                "\npark KA-01-HH-1234 White light" +
                 "\nslot_number_for_registration_number KA-01-HH-1234" +
                 "\nslot_number_for_registration_number KA-01-HH-1235"
         ).getBytes()));
@@ -121,16 +121,15 @@ public class MainTest {
     void testForCompleteFunctionality() {
         System.setIn(new ByteArrayInputStream((
                 "create_parking_lot 6" +
-                "\npark KA-01-HH-1234 White" +
-                "\npark KA-01-HH-9999 White" +
-                "\npark KA-01-BB-0001 Black" +
-                "\npark KA-01-HH-7777 Red" +
-                "\npark KA-01-HH-2701 Blue" +
-                "\npark KA-01-HH-3141 Black" +
+                "\npark KA-01-HH-1234 White light" +
+                "\npark KA-01-HH-9999 White light" +
+                "\npark KA-01-BB-0001 Black light" +
+                "\npark KA-01-HH-2701 Blue heavy" +
+                "\npark KA-01-HH-3141 Black heavy" +
                 "\nleave 4" +
                 "\nstatus" +
-                "\npark KA-01-P-333 White" +
-                "\npark DL-12-AA-9999 White" +
+                "\npark KA-01-P-333 White heavy" +
+                "\npark KA-01-P-333 White light" +
                 "\nregistration_numbers_for_cars_with_colour White" +
                 "\nslot_numbers_for_cars_with_colour White" +
                 "\nslot_number_for_registration_number KA-01-HH-3141" +
@@ -143,19 +142,17 @@ public class MainTest {
                 "Allocated slot number: 3\n" +
                 "Allocated slot number: 4\n" +
                 "Allocated slot number: 5\n" +
-                "Allocated slot number: 6\n" +
                 "Slot number 4 is free\n" +
                 "Slot No.\tRegistration No\tColor\n" +
                 "1\tKA-01-HH-1234\tWhite\n" +
                 "2\tKA-01-HH-9999\tWhite\n" +
                 "3\tKA-01-BB-0001\tBlack\n" +
-                "5\tKA-01-HH-2701\tBlue\n" +
-                "6\tKA-01-HH-3141\tBlack\n" +
+                "5\tKA-01-HH-3141\tBlack\n" +
                 "Allocated slot number: 4\n" +
                 "Sorry, parking lot is full\n" +
                 "KA-01-HH-1234, KA-01-HH-9999, KA-01-P-333\n" +
                 "1, 2, 4\n" +
-                "6\n" +
+                "5\n" +
                 "Not found\n", outContent.toString()
         );
     }

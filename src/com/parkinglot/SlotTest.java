@@ -6,14 +6,14 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class SlotTest {
     @Test
     void testSlotOnCreation() {
-        Slot slot = new Slot();
+        Slot slot = new Slot(VehicleType.ANY);
         assertEquals(true, slot.getAvailability());
         assertEquals( null, slot.getVehicle());
     }
 
     @Test
     void testSlotAvailability() {
-        Slot slot = new Slot();
+        Slot slot = new Slot(VehicleType.ANY);
         slot.setAvailability(true);
         assertEquals(true, slot.getAvailability());
         slot.setAvailability(false);

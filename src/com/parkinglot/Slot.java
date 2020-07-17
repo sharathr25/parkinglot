@@ -4,11 +4,13 @@ public class Slot {
     boolean isAvailable;
     Vehicle vehicle;
     int slotNumber;
+    VehicleType vehicleType;
 
-    Slot() {
-        isAvailable = true;
-        vehicle = null;
-        slotNumber = -1;
+    Slot(VehicleType vehicleType) {
+        this.isAvailable = true;
+        this.vehicle = null;
+        this.slotNumber = -1;
+        this.vehicleType = vehicleType;
     }
 
     Vehicle getVehicle() {
@@ -33,5 +35,13 @@ public class Slot {
 
     public int getSlotNumber() {
         return this.slotNumber;
+    }
+
+    public VehicleType getVehicleType() {
+        return vehicleType;
+    }
+
+    public void setVehicleType(VehicleType vehicleType) {
+        this.vehicleType = vehicleType;
     }
 }

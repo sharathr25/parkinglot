@@ -18,7 +18,7 @@ public class ParkingLotTest {
     @Test
     void testParkAVehicleWhenThereIsASlot() {
         ParkingLot parkingLot = new ParkingLot(2);
-        Car car = new Car("KA-01-HH-1234", "White");
+        Car car = new Car("KA-01-HH-1234", "White", VehicleType.LIGHT_MOTOR_VEHICLE);
         int slotNumber = parkingLot.allocateSlot(car);
         assertEquals(1, slotNumber);
     }
@@ -26,8 +26,8 @@ public class ParkingLotTest {
     @Test
     void testParkAVehicleWhenThereIsNoSlot() {
         ParkingLot parkingLot = new ParkingLot(1);
-        Car car1 = new Car("KA-01-HH-1234", "White");
-        Car car2 = new Car("KA-01-HH-1235", "White");
+        Car car1 = new Car("KA-01-HH-1234", "White", VehicleType.LIGHT_MOTOR_VEHICLE);
+        Car car2 = new Car("KA-01-HH-1235", "White", VehicleType.LIGHT_MOTOR_VEHICLE);
         parkingLot.allocateSlot(car1);
         int slotNumber = parkingLot.allocateSlot(car2);
         assertEquals(-1, slotNumber);
@@ -36,7 +36,7 @@ public class ParkingLotTest {
     @Test
     void testWhenVehicleLeavesASlot() {
         ParkingLot parkingLot = new ParkingLot(1);
-        Car car = new Car("KA-01-HH-1234", "White");
+        Car car = new Car("KA-01-HH-1234", "White", VehicleType.LIGHT_MOTOR_VEHICLE);
         parkingLot.allocateSlot(car);
         int slotNumber = parkingLot.leaveSlot(1);
         assertEquals(1, slotNumber);
@@ -45,9 +45,9 @@ public class ParkingLotTest {
     @Test
     void testGetRegistrationNumbersUsingColor() {
         ParkingLot parkingLot = new ParkingLot(3);
-        Car car1 = new Car("KA-01-HH-1234", "White");
-        Car car2 = new Car("KA-01-HH-1235", "White");
-        Car car3 = new Car("KA-01-HH-1236", "Black");
+        Car car1 = new Car("KA-01-HH-1234", "White", VehicleType.LIGHT_MOTOR_VEHICLE);
+        Car car2 = new Car("KA-01-HH-1235", "White", VehicleType.LIGHT_MOTOR_VEHICLE);
+        Car car3 = new Car("KA-01-HH-1236", "Black", VehicleType.LIGHT_MOTOR_VEHICLE);
         parkingLot.allocateSlot(car1);
         parkingLot.allocateSlot(car2);
         parkingLot.allocateSlot(car3);
@@ -60,9 +60,9 @@ public class ParkingLotTest {
     @Test
     void testGetSlotNumbersUsingColor() {
         ParkingLot parkingLot = new ParkingLot(3);
-        Car car1 = new Car("KA-01-HH-1234", "White");
-        Car car2 = new Car("KA-01-HH-1235", "White");
-        Car car3 = new Car("KA-01-HH-1236", "Black");
+        Car car1 = new Car("KA-01-HH-1234", "White", VehicleType.LIGHT_MOTOR_VEHICLE);
+        Car car2 = new Car("KA-01-HH-1235", "White", VehicleType.LIGHT_MOTOR_VEHICLE);
+        Car car3 = new Car("KA-01-HH-1236", "Black", VehicleType.LIGHT_MOTOR_VEHICLE);
         parkingLot.allocateSlot(car1);
         parkingLot.allocateSlot(car2);
         parkingLot.allocateSlot(car3);
@@ -75,9 +75,9 @@ public class ParkingLotTest {
     @Test
     void testGetSlotNumberUsingRegistrationNo() {
         ParkingLot parkingLot = new ParkingLot(3);
-        Car car1 = new Car("KA-01-HH-1234", "White");
-        Car car2 = new Car("KA-01-HH-1235", "White");
-        Car car3 = new Car("KA-01-HH-1236", "Black");
+        Car car1 = new Car("KA-01-HH-1234", "White", VehicleType.LIGHT_MOTOR_VEHICLE);
+        Car car2 = new Car("KA-01-HH-1235", "White", VehicleType.LIGHT_MOTOR_VEHICLE);
+        Car car3 = new Car("KA-01-HH-1236", "Black", VehicleType.LIGHT_MOTOR_VEHICLE);
         parkingLot.allocateSlot(car1);
         parkingLot.allocateSlot(car2);
         parkingLot.allocateSlot(car3);

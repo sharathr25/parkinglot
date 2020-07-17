@@ -30,7 +30,9 @@ public class Main {
                 case "park": {
                     String registrationNumberOfCar = input.split(" ")[1];
                     String colorOfCar = input.split(" ")[2];
-                    Car car = new Car(registrationNumberOfCar, colorOfCar);
+                    VehicleType vehicleType;
+                    vehicleType = VehicleType.valueOfCommandStr( input.split( " ")[3]);
+                    Car car = new Car(registrationNumberOfCar, colorOfCar, vehicleType != null ? vehicleType : VehicleType.ANY);
                     int slotNumber = parkingLot.allocateSlot(car);
                     System.out.println(slotNumber != -1 ? "Allocated slot number: " + slotNumber : "Sorry, parking lot is full");
                     break;
